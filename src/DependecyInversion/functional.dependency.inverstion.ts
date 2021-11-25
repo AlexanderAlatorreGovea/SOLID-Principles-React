@@ -1,3 +1,8 @@
+/*
+Reference: 
+https://alexnault.dev/dependency-inversion-principle-in-functional-typescript
+*/
+
 import axios from "axios";
 
 // with dependency inversion
@@ -21,7 +26,7 @@ export function HttpClient(): ApiClient {
 
 //user ApiClient abstraction here
 
-const SignUpService =
+export const SignUpService =
   (client: ApiClient) => async (email: string, password: string) => {
     const existingUser = await client.getUserByEmail(email);
 
@@ -38,6 +43,20 @@ const SignUpService =
 //we can use the new implementation like so
 const signup = SignUpService(HttpClient());
 signup("bob@bob.com", "");
+
+//inMemoryClient
+export function InMemoryClient(): ApiClient {
+  const users: User[] = [];
+
+  return {
+    createUser: async (user: User) => {
+      users.push(user);
+    },
+    getUserByEmail: async (email: string) => {
+      return users.find((user) => user.email === email);
+    },
+  };
+}
 
 // infra
 // export const HttpClient = {
