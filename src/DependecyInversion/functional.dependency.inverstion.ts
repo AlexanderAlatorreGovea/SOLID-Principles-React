@@ -7,6 +7,11 @@ import axios from "axios";
 
 // with dependency inversion
 
+interface User {
+  email: string;
+  password: string;
+}
+
 // domain/ApiClient.ts
 export interface ApiClient {
   createUser: (user: User) => Promise<void>;
@@ -16,10 +21,10 @@ export interface ApiClient {
 export function HttpClient(): ApiClient {
   return {
     createUser: async (user: User) => {
-      return axios.post();
+      return axios.post("https://mydomain.com");
     },
     getUserByEmail: async (email: string) => {
-      return axios.get();
+      return axios.get("https://mydomain.com");
     },
   };
 }

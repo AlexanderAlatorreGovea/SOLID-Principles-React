@@ -7,3 +7,11 @@ export class HackerNewsService {
     return this.http.get(api);
   }
 }
+
+export class MockHackerNewsService {
+  constructor(private http) {}
+
+  getNews() {
+    return this.http.get(api);
+  }
+}

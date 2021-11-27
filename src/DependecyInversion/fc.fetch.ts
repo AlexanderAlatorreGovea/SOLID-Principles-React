@@ -21,7 +21,7 @@ const makeGestUser = (fetch) => async (userId) => {
   return response.json();
 };
 
-const makeSaveUser = (fetch) => (userId, userData) => {
+const makeSaveUser = (fetch) => async (userId, userData) => {
   const response = await fetch(`https://api.myservice.com/users/${userId}`, {
     method: "POST",
     data: userData,
@@ -31,7 +31,7 @@ const makeSaveUser = (fetch) => (userId, userData) => {
 };
 
 //higher order functions that take in the fetch function first
-module.exports = (fetch) => {
+module.exports = (fetch: Promise<void>) => {
   return {
     getUser: makeGestUser(fetch),
     saveUser: makeSaveUser(fetch),
