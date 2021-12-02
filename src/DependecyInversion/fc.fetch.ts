@@ -1,6 +1,7 @@
 /*
 Reference: 
 https://github.com/fChristenson/javascript-integration-testing/blob/master/common/MockJsonResponse.js
+https://dev.to/paularah/dependency-injection-in-javascript-1bfk
 */
 
 const getProducts = async (productId) => {
