@@ -63,6 +63,12 @@ export function InMemoryClient(): ApiClient {
   };
 }
 
+const getSomething = () => ({
+  else: (value) => value,
+});
+
+console.log(getSomething().else('alex'))
+
 // infra
 // export const HttpClient = {
 //   createUser: async (_user: User) => {
